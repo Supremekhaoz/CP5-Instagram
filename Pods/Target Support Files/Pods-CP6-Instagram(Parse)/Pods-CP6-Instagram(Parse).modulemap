@@ -1,0 +1,6 @@
+framework module Pods_CP6_Instagram_Parse_ {
+  umbrella header "Pods-CP6-Instagram(Parse)-umbrella.h"
+
+  export *
+  module * { export * }
+}
