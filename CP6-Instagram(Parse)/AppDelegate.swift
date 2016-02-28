@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func UserDidLogout() {
-        
+        print("logout")
     }
     
     func applicationWillResignActive(application: UIApplication) {

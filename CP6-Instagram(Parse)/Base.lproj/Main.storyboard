@@ -77,35 +77,64 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Iu-df-7an">
-                                <rect key="frame" x="165" y="303" width="30" height="30"/>
-                                <state key="normal" title="Pic"/>
+                                <rect key="frame" x="141" y="569" width="92" height="30"/>
+                                <state key="normal" title="Photo Library"/>
                                 <connections>
-                                    <action selector="onTakePic:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="sB2-x2-GvH"/>
-                                    <segue destination="omf-Ni-MZp" kind="modal" id="2Vo-xP-rjQ"/>
+                                    <action selector="imageButton:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="F5W-ph-KA7"/>
+                                    <segue destination="omf-Ni-MZp" kind="modal" identifier="editImage" id="sVX-XG-2Yd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrX-PN-Ymr">
+                                <rect key="frame" x="151" y="607" width="72" height="30"/>
+                                <state key="normal" title="Snap a Pic"/>
+                                <connections>
+                                    <action selector="imageButton:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="UWa-21-kRm"/>
+                                    <action selector="takePicture:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="Rwd-7v-MPM"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oI5-mb-gNo">
+                                <rect key="frame" x="0.0" y="48" width="375" height="527"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="oI5-mb-gNo" id="LgT-u1-gh1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLu-aX-387" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="701.5" y="242.5"/>
         </scene>
-        <!--Image Picker View Controller-->
+        <!--Photo View Controller-->
         <scene sceneID="eAn-of-v7w">
             <objects>
-                <viewController id="omf-Ni-MZp" customClass="ImagePickerViewController" customModule="CP6_Instagram_Parse_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="uploadImage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="omf-Ni-MZp" customClass="PhotoViewController" customModule="CP6_Instagram_Parse_" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9CO-wh-zUS"/>
                         <viewControllerLayoutGuide type="bottom" id="dLP-vR-GLq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TXy-Sc-kFT">
+                    <view key="view" contentMode="scaleToFill" id="TXy-Sc-kFT" customClass="Photo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6E4-Qs-dNe">
+                                <rect key="frame" x="20" y="563" width="335" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9q-bz-Juj">
+                                <rect key="frame" x="0.0" y="28" width="375" height="527"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zGN-Ho-fqc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="captionField" destination="6E4-Qs-dNe" id="uzw-5Q-X37"/>
+                        <outlet property="photoView" destination="Z9q-bz-Juj" id="rtz-Ku-Nyu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vne-t2-aFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

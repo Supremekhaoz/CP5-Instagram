@@ -1,21 +1,26 @@
 //
-//  ImagePickerViewController.swift
+//  PhotoViewController.swift
 //  CP6-Instagram(Parse)
 //
-//  Created by Luis Liz on 2/25/16.
+//  Created by Luis Liz on 2/27/16.
 //  Copyright © 2016 Luis Liz. All rights reserved.
 //
 
 import UIKit
 
-class ImagePickerViewController: UIImagePickerController {
+class PhotoViewController: UIViewController {
 
+    @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var captionField: UITextField!
+    
+    var uploadedPhoto = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        photoView.image = uploadedPhoto
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
