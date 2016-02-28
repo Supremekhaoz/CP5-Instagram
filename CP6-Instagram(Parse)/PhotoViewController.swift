@@ -26,7 +26,15 @@ class PhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func makePost(sender: AnyObject) {
+        print("post")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
+    @IBAction func cancelPost(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+ 
     /*
     // MARK: - Navigation
 

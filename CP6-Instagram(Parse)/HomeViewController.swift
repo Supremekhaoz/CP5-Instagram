@@ -12,7 +12,7 @@ import Parse
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
-    var imageView: UIImage = UIImage()
+    var image: UIImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +44,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-            //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        //let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
-        self.imageView = originalImage
+        self.image = originalImage
         
         dismissViewControllerAnimated(false, completion: nil)
         performSegueWithIdentifier("editImage", sender: self)
@@ -62,15 +62,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editImage" {
             let vc = segue.destinationViewController as! PhotoViewController
-            
-                vc.photoView.image = self.imageView
-            }
+            vc.uploadedPhoto = self.image
         }
-            //            vc.photoView.image = self.imageView
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    
     }
-
-
-
+}
