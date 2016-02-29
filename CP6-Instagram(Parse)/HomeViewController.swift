@@ -11,10 +11,10 @@ import Parse
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var tableView: UITableView!
     
-    let query = PFQuery(className: "UserMedia")
+    var Umedia: [UserMedia]?
+    
     var data = [PFObject]?()
     
     let imagePicker = UIImagePickerController()
@@ -28,9 +28,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         tableView.dataSource = self
         tableView.delegate = self
         
-        query.orderByDescending("createdAt")
-        query.includeKey("author")
-        query.limit = 20
+        getPics() { (images, error) -> () in
+            self.data = images
+            self.tableView.reloadData()
+        }
         
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -71,23 +72,42 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //Table Views
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("photoCell", forIndexPath: indexPath) as! photoCell
+    func getPics(completion: (media: [PFObject]?, error: NSError?)-> Void) {
+        let query = PFQuery(className: "UserMedia")
+        query.orderByDescending("createdAt")
+        query.includeKey("author")
+        query.limit = 20
         query.findObjectsInBackgroundWithBlock { (media: [PFObject]?, error: NSError?) -> Void in
             if let media = media {
-                for item in media {
-                    print(item)
-                }
+                completion(media: media, error: nil)
             } else {
                 print("couldn't retrieve media")
             }
         }
-        //        cell.photoView.image = data
+    }
+    
+    //Table Views
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("photoCell", forIndexPath: indexPath) as! photoCell
+
+        
+        let image = self.data?[indexPath.row]
+        
+        
+        if image != nil {
+            cell.captionLabel.text = image!["caption"] as? String
+        
+            image!["media"].getDataInBackgroundWithBlock { (imageData: NSData?, error:NSError?) -> Void in
+                if error == nil {
+                    let image = UIImage(data: imageData!)
+                    cell.photoView.image = image
+                }
+                }
+        }
         return cell
     }
     

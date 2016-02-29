@@ -10,6 +10,14 @@ import UIKit
 import Parse
 
 class UserMedia: NSObject {
+    var caption: String?
+    var dictionary: NSDictionary?
+    
+    init(dictionary: NSDictionary) {
+        self.dictionary = dictionary
+        
+        caption = (dictionary["caption"] as? String?)!
+    }
     /**
      * Other methods
      */
