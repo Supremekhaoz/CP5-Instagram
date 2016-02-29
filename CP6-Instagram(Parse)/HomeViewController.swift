@@ -57,6 +57,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func onLogout(sender: AnyObject) {
+        PFUser.logOutInBackground()
+        dismissViewControllerAnimated(false, completion: nil)
+        print("user logged out")
+        
+    }
     //My Functions
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage

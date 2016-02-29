@@ -73,7 +73,7 @@
                                 <rect key="frame" x="20" y="20" width="44" height="30"/>
                                 <state key="normal" title="logout"/>
                                 <connections>
-                                    <action selector="onLogout:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="hdI-07-0nW"/>
+                                    <action selector="onLogout:" destination="cQ1-qf-ulJ" eventType="touchUpInside" id="uqU-Vr-b83"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Iu-df-7an">
