@@ -26,8 +26,22 @@ class PhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func resizeImg(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     @IBAction func makePost(sender: AnyObject) {
-        print("post")
+        let image = resizeImg(photoView.image!, newSize: CGSizeMake(200,200))
+        UserMedia.postUserImage(image, withCaption: captionField.text, withCompletion: nil)
+        print("posted pic")
         dismissViewControllerAnimated(true, completion: nil)
     }
 
